@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROCK PAPER SCISSORS</title>
+</head>
+
+<body>
+
+    <h1> Nisha's WORLD</h1>
+    <marquee width="100%" behavior="alternate">
+        <h1>Rock Paper Scissors</h1>
+    </marquee>
+    <table border-collapse: collapse; width: 100%;>
+        <tr>
+            <td>
+                <h2>Computer Choice: <span id="computer-choice"></span></h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h2>Your Choice: <span id="user-choice"></span></h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h2>
+                    Result: <span id="result"></span></h2>
+            </td>
+        </tr>
+    </table>
+    <br>
+
+
+    <div class="btn-group">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
+    <br>
+
+   
+    <!-- <script src="app.js" charset="UTF-8"></script> -->
+    <script>
+        const computerChoiceDisplay = document.getElementById('computer-choice')
+        const userChoiceDisplay = document.getElementById('user-choice')
+        const resultDisplay = document.getElementById('result')
+        const possibleChoices = document.querySelectorAll('button')
+        let userChoice
+        let computerChoice
+        let result
+
+        possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) => {
+            userChoice = e.target.id
+            userChoiceDisplay.innerHTML = userChoice
+            generateComputerChoice()
+            getResult()
+        }))
+
+        function generateComputerChoice() {
+            const randomNumber = Math.floor(Math.random() * 3) + 1
+
+            if (randomNumber === 1) {
+                computerChoice = 'rock'
+            }
+            if (randomNumber === 2) {
+                computerChoice = 'scissors'
+            }
+            if (randomNumber === 3) {
+                computerChoice = 'paper'
+            }
+            computerChoiceDisplay.innerHTML = computerChoice
+        }
+
+        function getResult() {
+            if (computerChoice === userChoice) {
+                result = 'Its a draw'
+            }
+            if (computerChoice === 'rock' && userChoice === 'paper') {
+                result = 'You win!'
+            }
+            if (computerChoice === 'rock' && userChoice === 'scissors') {
+                result = 'You lost!'
+            }
+            if (computerChoice === 'paper' && userChoice === 'scissors') {
+                result = 'You win!'
+            }
+            if (computerChoice === 'paper' && userChoice === 'rock') {
+                result = 'You lost!'
+            }
+            if (computerChoice === 'scissors' && userChoice === 'rock') {
+                result = 'You win!'
+            }
+            if (computerChoice === 'scissors' && userChoice === 'paper') {
+                result = 'You lost!'
+            }
+            resultDisplay.innerHTML = result
+        }
+
+    </script>
+    <!-- <style src="style.css" ></style> -->
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            background-image: linear-gradient(#d17e10, #66224f);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .game {
+            /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            background-color: #b87373;
+            border-radius: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        th,
+        td {
+            border: 2px solid rgb(0, 119, 128);
+            padding: 5px;
+        }
+
+
+        .btn-group button {
+            background-color: #5daa04;
+            border: 1px solid rgb(45, 0, 128);
+            color: white;
+            padding: 10px 24px;
+            cursor: pointer;
+            float: left;
+        }
+
+        .btn-group button:hover {
+            background-color: #6b8e3e;
+        }
+
+        .footer {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer button {
+            border: none;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 1px 4px rgba(201, 18, 18, 0.5);
+            padding: 5px;
+            width: 80px;
+            background-color: #D4EE9F;
+            color: #33001e;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .footer button:hover {
+            color: #ab9fee;
+            background-color: #1dd4d4;
+        }
+
+        .footer span {
+            flex: 1;
+            text-align: center;
+            font-size: 20px;
+            color: #557a09;
+            font-weight: bold;
+            margin: auto 0;
+        }
+
+        .message {
+            color: #95aa39bd;
+            height: 80px;
+        }
+    </style>
+</body>
+
+</html>
